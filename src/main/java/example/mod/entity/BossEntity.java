@@ -6,6 +6,7 @@ import example.mod.utils.IAnimatedDeath;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ai.goal.GoalSelector;
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
@@ -120,8 +121,9 @@ public abstract class BossEntity extends HostileEntity implements IAnimatedDeath
             this.remove(RemovalReason.KILLED);
         }
     }
-
-
+    public GoalSelector getGoalSelector() {
+        return this.goalSelector;
+    }
 
     @Override
     public int getXp() { return getXpDefault(); }
@@ -136,5 +138,4 @@ public abstract class BossEntity extends HostileEntity implements IAnimatedDeath
 
     @Override
     public abstract void setDeath();
-
 }
