@@ -2,6 +2,7 @@ package example.mod.registry;
 
 import example.mod.ExampleMod;
 import example.mod.entity.bosses.anubis.AnubisEntity;
+import example.mod.entity.bosses.something.GeoBoneExplorerEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
@@ -15,6 +16,12 @@ public class EntityRegistry {
             Registries.ENTITY_TYPE,
             ExampleMod.createId("anubis"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AnubisEntity::new)
+                    .dimensions(EntityDimensions.fixed(2f, 5f)).build()
+    );
+    public static final EntityType<GeoBoneExplorerEntity> GEOBONE_EXPLORER_ENTITY = Registry.register(
+            Registries.ENTITY_TYPE,
+            ExampleMod.createId("geobone_explorer"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, GeoBoneExplorerEntity::new)
                     .dimensions(EntityDimensions.fixed(2f, 5f)).build()
     );
     public static void init() {

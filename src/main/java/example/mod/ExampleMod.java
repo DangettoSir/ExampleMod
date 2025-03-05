@@ -1,5 +1,6 @@
 package example.mod;
 
+import example.mod.registry.client.BossBarClientRegistry;
 import example.mod.command.HitboxCommand;
 import example.mod.registry.EntityRegistry;
 import example.mod.registry.ItemRegistry;
@@ -25,6 +26,7 @@ public class ExampleMod implements ModInitializer {
 		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
 			HitboxCommand.register(dispatcher, registryAccess);
 		});
+		BossBarClientRegistry.init();
 		LOGGER.info("Hello Fabric world!");
 	}
 	public static Identifier createId(String path) {

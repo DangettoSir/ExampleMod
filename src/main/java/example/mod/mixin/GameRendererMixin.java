@@ -15,13 +15,12 @@ public abstract class GameRendererMixin {
     private void applyScreenShake(float tickDelta, long limitTime, MatrixStack matrices, CallbackInfo ci) {
         ScreenShakeHandler.tick();
         if (ScreenShakeHandler.getShakeTicks() > 0) {
-            float shake = ScreenShakeHandler.getShakeIntensity() *
-                    (ScreenShakeHandler.getShakeTicks() / (float) Math.max(1, ScreenShakeHandler.getShakeTicks()));
-            matrices.translate(
-                    (Math.random() - 0.5) * shake,
-                    (Math.random() - 0.5) * shake,
-                    0.0
-            );
+            float time = (ScreenShakeHandler.getMaxShakeTicks() - ScreenShakeHandler.getShakeTicks() + tickDelta) / 20.0f;
+            float intensity = ScreenShakeHandler.getShakeIntensity() * (ScreenShakeHandler.getShakeTicks() / (float) ScreenShakeHandler.getMaxShakeTicks());
+            float frequency = 2.0f;
+            float shakeX = (float) Math.sin(time * frequency * 2 * Math.PI) * intensity * 0.1f;
+            float shakeY = (float) Math.abs(Math.cos(time * frequency * 2 * Math.PI)) * intensity * 0.06f;
+            matrices.translate(shakeX, shakeY, 0.0);
         }
     }
 }
